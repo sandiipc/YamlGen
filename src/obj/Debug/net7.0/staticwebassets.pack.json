@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.YamlGen.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.YamlGen.props",
+      "PackagePath": "build\\YamlGen.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.YamlGen.props",
+      "PackagePath": "buildMultiTargeting\\YamlGen.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.YamlGen.props",
+      "PackagePath": "buildTransitive\\YamlGen.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

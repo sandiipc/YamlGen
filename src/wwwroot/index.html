@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Azure DevOps YAML Generator Bot</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;margin:2rem}
+    textarea{width:100%;height:160px;font-family:monospace;font-size:14px}
+    pre{background:#f4f4f4;padding:1rem;border-radius:6px;overflow:auto}
+    .controls{display:flex;gap:8px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <h1>Azure DevOps YAML Generator Bot</h1>
+  <p>Paste a repository URL or type a prompt like:<br><code>Generate pipeline for https://github.com/org/repo includeSonar=true includeFortify=false</code></p>
+  <textarea id="prompt">Generate pipeline for https://github.com/your-org/your-repo includeSonar=true includeFortify=true</textarea>
+  <div class="controls"><button id="run">Generate YAML</button><span id="status"></span></div>
+  <h3>Generated YAML</h3>
+  <pre id="output">(results will appear here)</pre>
+<script>
+document.getElementById('run').addEventListener('click', async ()=>{
+  const prompt = document.getElementById('prompt').value;
+  document.getElementById('status').textContent = 'Generating...';
+  try{
+    const res = await fetch('/api/generate',{method:'POST',body:prompt});
+    const data = await res.json();
+    if(res.ok){
+      document.getElementById('output').textContent = data.yaml;
+    } else {
+      document.getElementById('output').textContent = JSON.stringify(data,null,2);
+    }
+  }catch(e){document.getElementById('output').textContent = e.toString();}
+  document.getElementById('status').textContent = '';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "9dVx0KPRJSa4KISv/MqZ97UpppfHq1iK033ngDMlzg4=",
+  "Source": "YamlGen",
+  "BasePath": "_content/YamlGen",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "YamlGen\\wwwroot",
+      "Source": "YamlGen",
+      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\",
+      "BasePath": "_content/YamlGen",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\index.html",
+      "SourceId": "YamlGen",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\",
+      "BasePath": "_content/YamlGen",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
