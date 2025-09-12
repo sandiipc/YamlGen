@@ -1,32 +1,28 @@
-# Stage 1: Build the application
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-
-# Set working directory inside container
-WORKDIR /src
-
-# Copy .csproj and restore dependencies
-COPY *.sln .
-COPY */*.csproj ./
-RUN for file in $(ls *.csproj); do mkdir -p ${file%.*} && mv $file ${file%.*}/; done
-RUN dotnet restore
-
-# Copy all project files
-COPY . .
-
-# Publish the app (Release mode)
-RUN dotnet publish -c Release -o /app/publish
-
-# Stage 2: Run the application
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
-
-# Set working directory for runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
+EXPOSE 5256
 
-# Copy published files from build stage
-COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:5256
 
-# Expose port 8080 (Render expects this by default)
-EXPOSE 8080
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
-# Run the application
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+ARG configuration=Release
+WORKDIR /src
+COPY ["src/YamlGen.csproj", "src/"]
+RUN dotnet restore "src/YamlGen.csproj"
+COPY . .
+WORKDIR "/src/src"
+RUN dotnet build "YamlGen.csproj" -c $configuration -o /app/build
+
+FROM build AS publish
+ARG configuration=Release
+RUN dotnet publish "YamlGen.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "YamlGen.dll"]

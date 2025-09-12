@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9dVx0KPRJSa4KISv/MqZ97UpppfHq1iK033ngDMlzg4=",
+  "Hash": "zoLpNJhDkxx+kKlyHbZCp/LChGubWbFC4pmZX7zZi2Y=",
   "Source": "YamlGen",
   "BasePath": "_content/YamlGen",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "YamlGen\\wwwroot",
       "Source": "YamlGen",
-      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\",
+      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\src\\wwwroot\\",
       "BasePath": "_content/YamlGen",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\index.html",
+      "Identity": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\src\\wwwroot\\index.html",
       "SourceId": "YamlGen",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\wwwroot\\",
+      "ContentRoot": "C:\\Sandip\\AI102\\src\\YAMLGenerator\\YamlGen\\src\\wwwroot\\",
       "BasePath": "_content/YamlGen",
       "RelativePath": "index.html",
       "AssetKind": "All",
