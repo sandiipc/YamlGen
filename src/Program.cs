@@ -64,8 +64,8 @@ app.MapPost("/api/generate", async (HttpRequest req, ILogger<Program> logger) =>
 
         logger.LogInformation("Starting agentic generation for {repo}", repoUrl);
 
-        var openai_ai_api_key = "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";
-        // var generator = new AgenticPipelineGenerator(logger, Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+        // var openai_ai_api_key = "";
+        var generator = new AgenticPipelineGenerator(logger, Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
         var generator = new AgenticPipelineGenerator(logger, openai_ai_api_key);
         var (yaml, downloadUrl) = await generator.GeneratePipelineForRepositoryAsync(repoUrl, includeSonar, includeFortify);
 
