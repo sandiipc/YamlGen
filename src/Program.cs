@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -63,7 +64,9 @@ app.MapPost("/api/generate", async (HttpRequest req, ILogger<Program> logger) =>
 
         logger.LogInformation("Starting agentic generation for {repo}", repoUrl);
 
-        var generator = new AgenticPipelineGenerator(logger, Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+        var openai_ai_api_key = "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";
+        // var generator = new AgenticPipelineGenerator(logger, Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+        var generator = new AgenticPipelineGenerator(logger, openai_ai_api_key);
         var (yaml, downloadUrl) = await generator.GeneratePipelineForRepositoryAsync(repoUrl, includeSonar, includeFortify);
 
         return Results.Ok(new { yaml, downloadUrl, repo = repoUrl, includeSonar, includeFortify });
@@ -205,6 +208,11 @@ public class AgenticPipelineGenerator
                 CreateNoWindow = true,
             };
             var p = Process.Start(psi);
+            if (p is null)
+            {
+                _logger.LogWarning("git clone returned error: Unable to clone the repository.");
+                return false;
+            }
             var stdout = await p.StandardOutput.ReadToEndAsync();
             var stderr = await p.StandardError.ReadToEndAsync();
             await p.WaitForExitAsync();
